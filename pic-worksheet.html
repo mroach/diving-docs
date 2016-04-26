@@ -18,7 +18,9 @@
       .student:nth-child(even) { page-break-after: always; margin-bottom: 0 !important; }
       .student:nth-child(odd) { margin-top: 0 !important;}
       .student { page-break-inside: avoid }
-      /* ... the rest of the rules ... */
+
+      /* Remove box shadows. Can cause printing errors */
+      .ui.segments { box-shadow: none }
     }
     @media screen {
       html, body {
