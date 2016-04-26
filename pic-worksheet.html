@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="bower_components/semantic-ui/dist/semantic.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="bower_components/semantic-ui/dist/semantic.min.css">
+  <style type="text/css">
+    @page {
+      size: A4;
+      margin: 1cm;
+    }
+    @media print {
+      html, body {
+        width: 210mm;
+        height: 297mm;
+      }
+      .student:nth-child(even) { page-break-after: always; margin-bottom: 0 !important; }
+      .student:nth-child(odd) { margin-top: 0 !important;}
+      .student { page-break-inside: avoid }
+      /* ... the rest of the rules ... */
+    }
+    @media screen {
+      html, body {
+        width: 210mm;
+        margin: 10px auto;
+      }
+    }
+    .condensed-options .field.field { margin-bottom: 0 !important; }
+
+    /*
+     * Have the form take up 100% of the vertical space and evenly distribute
+     * the student blocks
+     */
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    /* Cause bottom borders to be darker. The default light grey doesn't print well */
+    .ui.form input { border-bottom-color: #888 !important }
+  </style>
+  <script type="text/javascript">
+    $(function() {
+      var showSpamOptions = false;
+      if (!showSpamOptions) {
+        $('.spam-options').remove();
+      }
+
+      var students = 2;
+      for (var i = students; i > 1; i--) {
+        $('#source').clone().attr('id', '').insertAfter('#source');
+      };
+
+    })
+  </script>
+</head>
+<body>
+  <!-- <h2 class="ui dividing header">
+    <img class="ui image" src="resources/padi.png" />
+    <div class="content">
+      PIC Certification Worksheet
+      <div class="sub header">Write clearly in block capital letters. Return to your instructor upon completion.</div>
+    </div>
+  </h2> -->
+
+  <form class="ui small form">
+
+    <div class="ui segments student" id="source">
+      <div class="ui segment">
+        <h3 class="ui dividing header">
+          <i class="user icon"></i>
+          <div class="content">
+            Student Information
+            <div class="sub header">This name will appear on your PADI certification card</div>
+          </div>
+        </h3>
+        <div class="fields">
+          <div class="seven wide field">
+            <label>First Name</label>
+            <input type="text" name="shipping[first-name]">
+          </div>
+          <div class="two wide field">
+            <label>Middle Initial</label>
+            <input type="text" name="shipping[middle-initial]">
+          </div>
+          <div class="seven wide field">
+            <label>Surname</label>
+            <input type="text" name="shipping[last-name]">
+          </div>
+        </div>
+
+        <div class="fields">
+          <div class="nine wide field">
+            <label>Email Address</label>
+            <div class="ui left icon input">
+              <input type="text" name="email">
+              <i class="mail outline icon"></i>
+            </div>
+          </div>
+
+          <div class="four wide field">
+            <label>Date of Birth (dd/mm/yyyy)</label>
+            <div class="ui left icon input">
+              <input type="text" name="date-of-birth">
+              <i class="birthday icon"></i>
+            </div>
+          </div>
+
+          <div class="two wide field">
+            <label>Gender</label>
+            <div class="field">
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="gender" value="M">
+                  <label><i class="male icon"></i>M</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="gender" value="F">
+                  <label><i class="female icon"></i>F</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="ui segment">
+        <h3 class="ui dividing header">
+          <i class="shipping icon"></i>
+          <div class="content">
+            Mailing Address
+            <div class="sub header">Your PADI certification card will be shipped to this address</div>
+          </div>
+        </h3>
+        <div class="field">
+          <label>Street Address</label>
+          <input type="text" name="shipping[address]">
+        </div>
+
+        <div class="field">
+          <input type="text" name="shipping[address_2]">
+        </div>
+
+        <div class="fields">
+          <div class="five wide field">
+            <label>City</label>
+            <input type="text" name="shipping[city]">
+          </div>
+
+          <div class="three wide field">
+            <label>State/Province</label>
+            <input type="text" name="shipping[state_province]">
+          </div>
+
+          <div class="three wide field">
+            <label>Postcode</label>
+            <input type="text" name="shipping[postcode]">
+          </div>
+
+          <div class="five wide field">
+            <label>Country</label>
+            <input type="text" name="shipping[postcode]">
+          </div>
+        </div>
+
+        <div class="spam-options condensed-options">
+          <div class="fields">
+            <div class="twelve wide field">
+              <label>Receive marketing-related mailings from PADI?</label>
+            </div>
+            <div class="four wide field">
+              <div class="inline fields">
+                <div class="field">
+                  <div class="ui radio checkbox">
+                    <label>Yes</label>
+                    <input type="checkbox" name="padi-mailings">
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui radio checkbox">
+                    <label>No</label>
+                    <input type="checkbox" name="padi-mailings">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fields">
+            <div class="twelve wide field">
+              <label>Receive mailings from PADI Partners, such as Project AWARE and selected third parties?</label>
+            </div>
+            <div class="four wide field">
+              <div class="inline fields">
+                <div class="field">
+                  <div class="ui radio checkbox">
+                    <label>Yes</label>
+                    <input type="checkbox" name="padi-mailings">
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui radio checkbox">
+                    <label>No</label>
+                    <input type="checkbox" name="padi-mailings">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </form>
+</body>
+</html>
