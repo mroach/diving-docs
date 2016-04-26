@@ -17,9 +17,6 @@
       }
       .student { page-break-inside: avoid }
 
-      /* Remove box shadows. Can cause printing errors */
-      .ui.segments { box-shadow: none }
-
       /* Darken sub-header text */
       .ui.header .sub.header { color: rgba(0,0,0,0.8); }
     }
@@ -29,7 +26,6 @@
         margin: 10px auto;
       }
     }
-    .condensed-options .field.field { margin-bottom: 0 !important; }
 
     /*
      * Have the form take up 100% of the vertical space and evenly distribute
@@ -44,6 +40,17 @@
 
     /* Cause bottom borders to be darker. The default light grey doesn't print well */
     .ui.form input { border-bottom-color: #888 !important }
+
+    /* Condense radio/checkboxes */
+    .condensed-options .field.field { margin-bottom: 0 !important; }
+
+    /*
+     * Segments have a bunch of hacks to get the borders to look fancy
+     * Undo them so the lines are cleaner and print more easily
+     */
+    .ui.segments { border: solid 1px #888 !important; }
+    .ui.segments { box-shadow: none; }
+    .ui.segment { background: transparent; }
   </style>
   <script type="text/javascript">
     $(function() {
